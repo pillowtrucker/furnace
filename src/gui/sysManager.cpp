@@ -58,12 +58,12 @@ void FurnaceGUI::drawSysManager() {
         ImGui::PushID(i);
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
-        if (ImGui::Button(ICON_FA_ARROWS)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROWS))) {
         }
         if (ImGui::BeginDragDropSource()) {
           sysToMove=i;
           ImGui::SetDragDropPayload("FUR_SYS",NULL,0,ImGuiCond_Once);
-          ImGui::Button(ICON_FA_ARROWS "##SysDrag");
+          ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROWS "##SysDrag"));
           ImGui::EndDragDropSource();
         } else if (ImGui::IsItemHovered()) {
           ImGui::SetTooltip("(drag to swap chips)");
@@ -115,7 +115,7 @@ void FurnaceGUI::drawSysManager() {
         ImGui::SameLine();
         ImGui::BeginDisabled(e->song.systemLen<=1);
         pushDestColor();
-        if (ImGui::Button(ICON_FA_TIMES "##SysRemove")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##SysRemove"))) {
           sysToDelete=i;
           showWarning("Are you sure you want to remove this chip?",GUI_WARN_SYSTEM_DEL);
         }
@@ -130,7 +130,7 @@ void FurnaceGUI::drawSysManager() {
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
         ImGui::TableNextColumn();
-        ImGui::Button(ICON_FA_PLUS "##SysAdd");
+        ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##SysAdd"));
         if (ImGui::BeginPopupContextItem("SysPickerA",ImGuiPopupFlags_MouseButtonLeft)) {
           DivSystem picked=systemPicker();
           if (picked!=DIV_SYSTEM_NULL) {

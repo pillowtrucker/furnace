@@ -533,7 +533,7 @@ DivChannelModeHints DivPlatformPCE::getModeHints(int ch) {
   DivChannelModeHints ret;
   if (ch<4) return ret;
   ret.count=1;
-  ret.hint[0]=ICON_FUR_NOISE;
+  ret.hint[0]=reinterpret_cast<const char *>(ICON_FUR_NOISE);
   ret.type[0]=0;
 
   if (chan[ch].noise) ret.type[0]=4;

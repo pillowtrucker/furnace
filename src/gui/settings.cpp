@@ -815,7 +815,7 @@ void FurnaceGUI::drawSettings() {
           ImGui::SameLine();
           //ImGui::BeginDisabled(settings.initialSys.size()<=4);
           pushDestColor();
-          if (ImGui::Button(ICON_FA_MINUS "##InitSysRemove")) {
+          if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_MINUS "##InitSysRemove"))) {
             doRemove=i;
             settingsChanged=true;
           }
@@ -883,7 +883,7 @@ void FurnaceGUI::drawSettings() {
           settings.initialSys.remove(fmt::sprintf("flags%d",sysCount-1));
         }
 
-        if (sysCount<32) if (ImGui::Button(ICON_FA_PLUS "##InitSysAdd")) {
+        if (sysCount<32) if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##InitSysAdd"))) {
           settings.initialSys.set(fmt::sprintf("id%d",sysCount),(int)e->systemToFileFur(DIV_SYSTEM_YM2612));
           settings.initialSys.set(fmt::sprintf("vol%d",sysCount),1.0f);
           settings.initialSys.set(fmt::sprintf("pan%d",sysCount),0.0f);
@@ -1344,12 +1344,12 @@ void FurnaceGUI::drawSettings() {
         ImGui::AlignTextToFramePadding();
         ImGui::Text("Actions:");
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_PLUS "##AddAction")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##AddAction"))) {
           midiMap.binds.push_back(MIDIBind());
           settingsChanged=true;
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_EXTERNAL_LINK "##AddLearnAction")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_EXTERNAL_LINK "##AddLearnAction"))) {
           midiMap.binds.push_back(MIDIBind());
           learning=midiMap.binds.size()-1;
           settingsChanged=true;
@@ -1503,7 +1503,7 @@ void FurnaceGUI::drawSettings() {
             popToggleColors();
 
             ImGui::TableNextColumn();
-            if (ImGui::Button(ICON_FA_TIMES "##BRemove")) {
+            if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##BRemove"))) {
               midiMap.binds.erase(midiMap.binds.begin()+i);
               if (learning==(int)i) learning=-1;
               i--;
@@ -1805,7 +1805,7 @@ void FurnaceGUI::drawSettings() {
         ImGui::SameLine();
         ImGui::InputText("##YRW801Path",&settings.yrw801Path);
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_FOLDER "##YRW801Load")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER "##YRW801Load"))) {
           openFileDialog(GUI_FILE_YRW801_ROM_OPEN);
         }
 
@@ -1814,7 +1814,7 @@ void FurnaceGUI::drawSettings() {
         ImGui::SameLine();
         ImGui::InputText("##TG100Path",&settings.tg100Path);
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_FOLDER "##TG100Load")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER "##TG100Load"))) {
           openFileDialog(GUI_FILE_TG100_ROM_OPEN);
         }
 
@@ -1823,7 +1823,7 @@ void FurnaceGUI::drawSettings() {
         ImGui::SameLine();
         ImGui::InputText("##MU5Path",&settings.mu5Path);
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_FOLDER "##MU5Load")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER "##MU5Load"))) {
           openFileDialog(GUI_FILE_MU5_ROM_OPEN);
         }
         */
@@ -1992,7 +1992,7 @@ void FurnaceGUI::drawSettings() {
                 }
               }
               ImGui::TableNextColumn();
-              snprintf(id,4095,ICON_FA_TIMES "##SNRemove_%d",i.scan);
+snprintf(id,4095,reinterpret_cast<const char *>(ICON_FA_TIMES "##SNRemove_%d"),i.scan);
               if (ImGui::Button(id)) {
                 noteKeys.erase(i.scan);
                 settingsChanged=true;
@@ -2645,7 +2645,7 @@ void FurnaceGUI::drawSettings() {
           if (settings.mainFont==6) {
             ImGui::InputText("##MainFontPath",&settings.mainFontPath);
             ImGui::SameLine();
-            if (ImGui::Button(ICON_FA_FOLDER "##MainFontLoad")) {
+            if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER "##MainFontLoad"))) {
               openFileDialog(GUI_FILE_LOAD_MAIN_FONT);
               settingsChanged=true;
             }
@@ -2664,7 +2664,7 @@ void FurnaceGUI::drawSettings() {
           if (settings.headFont==6) {
             ImGui::InputText("##HeadFontPath",&settings.headFontPath);
             ImGui::SameLine();
-            if (ImGui::Button(ICON_FA_FOLDER "##HeadFontLoad")) {
+            if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER "##HeadFontLoad"))) {
               openFileDialog(GUI_FILE_LOAD_HEAD_FONT);
               settingsChanged=true;
             }
@@ -2683,7 +2683,7 @@ void FurnaceGUI::drawSettings() {
           if (settings.patFont==6) {
             ImGui::InputText("##PatFontPath",&settings.patFontPath);
             ImGui::SameLine();
-            if (ImGui::Button(ICON_FA_FOLDER "##PatFontLoad")) {
+            if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER "##PatFontLoad"))) {
               openFileDialog(GUI_FILE_LOAD_PAT_FONT);
               settingsChanged=true;
             }
@@ -5934,51 +5934,51 @@ void FurnaceGUI::applyUISettings(bool updateFonts) {
     mainFont->EllipsisCharCount=3;
   }
 
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeDir,"",uiColors[GUI_COLOR_FILE_DIR],ICON_FA_FOLDER_O);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeFile,"",uiColors[GUI_COLOR_FILE_OTHER],ICON_FA_FILE_O);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fur",uiColors[GUI_COLOR_FILE_SONG_NATIVE],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fui",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fuw",uiColors[GUI_COLOR_FILE_WAVE],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmp",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmw",uiColors[GUI_COLOR_FILE_WAVE],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".wav",uiColors[GUI_COLOR_FILE_AUDIO],ICON_FA_FILE_AUDIO_O);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmc",uiColors[GUI_COLOR_FILE_AUDIO],ICON_FA_FILE_AUDIO_O);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".brr",uiColors[GUI_COLOR_FILE_AUDIO],ICON_FA_FILE_AUDIO_O);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".vgm",uiColors[GUI_COLOR_FILE_VGM],ICON_FA_FILE_AUDIO_O);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".zsm",uiColors[GUI_COLOR_FILE_ZSM],ICON_FA_FILE_AUDIO_O);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ttf",uiColors[GUI_COLOR_FILE_FONT],ICON_FA_FONT);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".otf",uiColors[GUI_COLOR_FILE_FONT],ICON_FA_FONT);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ttc",uiColors[GUI_COLOR_FILE_FONT],ICON_FA_FONT);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dfont",uiColors[GUI_COLOR_FILE_FONT],ICON_FA_FONT);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fon",uiColors[GUI_COLOR_FILE_FONT],ICON_FA_FONT);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".pcf",uiColors[GUI_COLOR_FILE_FONT],ICON_FA_FONT);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".psf",uiColors[GUI_COLOR_FILE_FONT],ICON_FA_FONT);
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeDir,"",uiColors[GUI_COLOR_FILE_DIR],reinterpret_cast<const char *>(ICON_FA_FOLDER_O));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeFile,"",uiColors[GUI_COLOR_FILE_OTHER],reinterpret_cast<const char *>(ICON_FA_FILE_O));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fur",uiColors[GUI_COLOR_FILE_SONG_NATIVE],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fui",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fuw",uiColors[GUI_COLOR_FILE_WAVE],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmp",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmw",uiColors[GUI_COLOR_FILE_WAVE],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".wav",uiColors[GUI_COLOR_FILE_AUDIO],reinterpret_cast<const char *>(ICON_FA_FILE_AUDIO_O));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmc",uiColors[GUI_COLOR_FILE_AUDIO],reinterpret_cast<const char *>(ICON_FA_FILE_AUDIO_O));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".brr",uiColors[GUI_COLOR_FILE_AUDIO],reinterpret_cast<const char *>(ICON_FA_FILE_AUDIO_O));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".vgm",uiColors[GUI_COLOR_FILE_VGM],reinterpret_cast<const char *>(ICON_FA_FILE_AUDIO_O));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".zsm",uiColors[GUI_COLOR_FILE_ZSM],reinterpret_cast<const char *>(ICON_FA_FILE_AUDIO_O));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ttf",uiColors[GUI_COLOR_FILE_FONT],reinterpret_cast<const char *>(ICON_FA_FONT));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".otf",uiColors[GUI_COLOR_FILE_FONT],reinterpret_cast<const char *>(ICON_FA_FONT));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ttc",uiColors[GUI_COLOR_FILE_FONT],reinterpret_cast<const char *>(ICON_FA_FONT));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dfont",uiColors[GUI_COLOR_FILE_FONT],reinterpret_cast<const char *>(ICON_FA_FONT));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fon",uiColors[GUI_COLOR_FILE_FONT],reinterpret_cast<const char *>(ICON_FA_FONT));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".pcf",uiColors[GUI_COLOR_FILE_FONT],reinterpret_cast<const char *>(ICON_FA_FONT));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".psf",uiColors[GUI_COLOR_FILE_FONT],reinterpret_cast<const char *>(ICON_FA_FONT));
 
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmf",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".mod",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fc13",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fc14",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fc",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".smod",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ftm",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".0cc",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dnm",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".eft",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dmf",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".mod",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fc13",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fc14",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fc",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".smod",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ftm",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".0cc",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".dnm",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".eft",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
 
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fub",uiColors[GUI_COLOR_FILE_SONG_IMPORT],ICON_FA_FILE);
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fub",uiColors[GUI_COLOR_FILE_SONG_IMPORT],reinterpret_cast<const char *>(ICON_FA_FILE));
 
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".tfi",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".vgi",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".s3i",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".sbi",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".opli",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".opni",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".y12",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".bnk",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fti",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".bti",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ff",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
-  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".opm",uiColors[GUI_COLOR_FILE_INSTR],ICON_FA_FILE);
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".tfi",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".vgi",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".s3i",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".sbi",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".opli",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".opni",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".y12",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".bnk",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".fti",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".bti",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".ff",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
+  ImGuiFileDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtension,".opm",uiColors[GUI_COLOR_FILE_INSTR],reinterpret_cast<const char *>(ICON_FA_FILE));
 
   if (updateFonts) {
     if (fileDialog!=NULL) delete fileDialog;

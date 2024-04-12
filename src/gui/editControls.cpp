@@ -311,7 +311,7 @@ void FurnaceGUI::drawMobileControls() {
         mobileEditButtonSize=ImVec2(avail,avail);
       }
 
-      if (ImGui::Button(ICON_FA_PENCIL "##Edit",mobileEditButtonSize)) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PENCIL "##Edit"),mobileEditButtonSize)) {
         // click
         if (mobileEditWas) {
           if (++mobileEditPage>3) mobileEditPage=0;
@@ -333,13 +333,13 @@ void FurnaceGUI::drawMobileControls() {
   if (ImGui::Begin("Mobile Controls",NULL,ImGuiWindowFlags_NoScrollbar|ImGuiWindowFlags_NoScrollWithMouse|globalWinFlags)) {
     float avail=portrait?ImGui::GetContentRegionAvail().y:ImGui::GetContentRegionAvail().x;
     ImVec2 buttonSize=ImVec2(avail,avail);
-    const char* mobButtonName=ICON_FA_CHEVRON_RIGHT "##MobileMenu";
-    if (portrait) mobButtonName=ICON_FA_CHEVRON_UP "##MobileMenu";
+    const char* mobButtonName=reinterpret_cast<const char *>(ICON_FA_CHEVRON_RIGHT "##MobileMenu");
+    if (portrait) mobButtonName=reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP "##MobileMenu");
     if (mobileMenuOpen) {
       if (portrait) {
-        mobButtonName=ICON_FA_CHEVRON_DOWN "##MobileMenu";
+        mobButtonName=reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN "##MobileMenu");
       } else {
-        mobButtonName=ICON_FA_CHEVRON_LEFT "##MobileMenu";
+        mobButtonName=reinterpret_cast<const char *>(ICON_FA_CHEVRON_LEFT "##MobileMenu");
       }
     }
     if (ImGui::Button(mobButtonName,buttonSize)) {
@@ -363,16 +363,16 @@ void FurnaceGUI::drawMobileControls() {
 
     pushToggleColors(e->isPlaying());
     if (portrait) ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_PLAY "##Play",buttonSize)) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLAY "##Play"),buttonSize)) {
       play();
     }
     popToggleColors();
     if (portrait) ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_STOP "##Stop",buttonSize)) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_STOP "##Stop"),buttonSize)) {
       stop();
     }
     if (portrait) ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_ARROW_DOWN "##StepOne",buttonSize)) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROW_DOWN "##StepOne"),buttonSize)) {
       e->stepOne(cursor.y);
       pendingStepUpdate=1;
     }
@@ -380,14 +380,14 @@ void FurnaceGUI::drawMobileControls() {
     bool repeatPattern=e->getRepeatPattern();
     pushToggleColors(repeatPattern);
     if (portrait) ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_REPEAT "##RepeatPattern",buttonSize)) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_REPEAT "##RepeatPattern"),buttonSize)) {
       e->setRepeatPattern(!repeatPattern);
     }
     popToggleColors();
 
     pushToggleColors(edit);
     if (portrait) ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_CIRCLE "##Edit",buttonSize)) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CIRCLE "##Edit"),buttonSize)) {
       edit=!edit;
     }
     popToggleColors();
@@ -395,7 +395,7 @@ void FurnaceGUI::drawMobileControls() {
     bool metro=e->getMetronome();
     pushToggleColors(metro);
     if (portrait) ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_BELL_O "##Metronome",buttonSize)) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_BELL_O "##Metronome"),buttonSize)) {
       e->setMetronome(!metro);
     }
     popToggleColors();
@@ -707,7 +707,7 @@ void FurnaceGUI::drawEditControls() {
         }
 
         pushToggleColors(e->isPlaying());
-        if (ImGui::Button(ICON_FA_PLAY "##Play")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLAY "##Play"))) {
           play();
         }
         if (ImGui::IsItemHovered()) {
@@ -715,7 +715,7 @@ void FurnaceGUI::drawEditControls() {
         }
         popToggleColors();
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_STOP "##Stop")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_STOP "##Stop"))) {
           stop();
         }
         if (ImGui::IsItemHovered()) {
@@ -741,7 +741,7 @@ void FurnaceGUI::drawEditControls() {
           e->setRepeatPattern(repeatPattern);
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_ARROW_DOWN "##StepOne")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROW_DOWN "##StepOne"))) {
           e->stepOne(cursor.y);
           pendingStepUpdate=1;
         }
@@ -765,7 +765,7 @@ void FurnaceGUI::drawEditControls() {
       break;
     case 1: // compact
       if (ImGui::Begin("Play/Edit Controls",&editControlsOpen,ImGuiWindowFlags_NoScrollbar|ImGuiWindowFlags_NoScrollWithMouse|globalWinFlags)) {
-        if (ImGui::Button(ICON_FA_STOP "##Stop")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_STOP "##Stop"))) {
           stop();
         }
         if (ImGui::IsItemHovered()) {
@@ -773,7 +773,7 @@ void FurnaceGUI::drawEditControls() {
         }
         ImGui::SameLine();
         pushToggleColors(e->isPlaying());
-        if (ImGui::Button(ICON_FA_PLAY "##Play")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLAY "##Play"))) {
           play();
         }
         if (ImGui::IsItemHovered()) {
@@ -781,7 +781,7 @@ void FurnaceGUI::drawEditControls() {
         }
         popToggleColors();
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_ARROW_DOWN "##StepOne")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROW_DOWN "##StepOne"))) {
           e->stepOne(cursor.y);
           pendingStepUpdate=1;
         }
@@ -792,7 +792,7 @@ void FurnaceGUI::drawEditControls() {
         ImGui::SameLine();
         bool repeatPattern=e->getRepeatPattern();
         pushToggleColors(repeatPattern);
-        if (ImGui::Button(ICON_FA_REPEAT "##RepeatPattern")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_REPEAT "##RepeatPattern"))) {
           e->setRepeatPattern(!repeatPattern);
         }
         if (ImGui::IsItemHovered()) {
@@ -802,7 +802,7 @@ void FurnaceGUI::drawEditControls() {
 
         ImGui::SameLine();
         pushToggleColors(edit);
-        if (ImGui::Button(ICON_FA_CIRCLE "##Edit")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CIRCLE "##Edit"))) {
           edit=!edit;
         }
         if (ImGui::IsItemHovered()) {
@@ -813,7 +813,7 @@ void FurnaceGUI::drawEditControls() {
         ImGui::SameLine();
         bool metro=e->getMetronome();
         pushToggleColors(metro);
-        if (ImGui::Button(ICON_FA_BELL_O "##Metronome")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_BELL_O "##Metronome"))) {
           e->setMetronome(!metro);
         }
         if (ImGui::IsItemHovered()) {
@@ -874,20 +874,20 @@ void FurnaceGUI::drawEditControls() {
       if (ImGui::Begin("Play/Edit Controls",&editControlsOpen,ImGuiWindowFlags_NoScrollbar|ImGuiWindowFlags_NoScrollWithMouse|globalWinFlags)) {
         ImVec2 buttonSize=ImVec2(ImGui::GetContentRegionAvail().x,0.0f);
         pushToggleColors(e->isPlaying());
-        if (ImGui::Button(ICON_FA_PLAY "##Play",buttonSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLAY "##Play"),buttonSize)) {
           play();
         }
         if (ImGui::IsItemHovered()) {
           ImGui::SetTooltip("Play");
         }
         popToggleColors();
-        if (ImGui::Button(ICON_FA_STOP "##Stop",buttonSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_STOP "##Stop"),buttonSize)) {
           stop();
         }
         if (ImGui::IsItemHovered()) {
           ImGui::SetTooltip("Stop");
         }
-        if (ImGui::Button(ICON_FA_ARROW_DOWN "##StepOne",buttonSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROW_DOWN "##StepOne"),buttonSize)) {
           e->stepOne(cursor.y);
           pendingStepUpdate=1;
         }
@@ -897,7 +897,7 @@ void FurnaceGUI::drawEditControls() {
 
         bool repeatPattern=e->getRepeatPattern();
         pushToggleColors(repeatPattern);
-        if (ImGui::Button(ICON_FA_REPEAT "##RepeatPattern",buttonSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_REPEAT "##RepeatPattern"),buttonSize)) {
           e->setRepeatPattern(!repeatPattern);
         }
         if (ImGui::IsItemHovered()) {
@@ -906,7 +906,7 @@ void FurnaceGUI::drawEditControls() {
         popToggleColors();
 
         pushToggleColors(edit);
-        if (ImGui::Button(ICON_FA_CIRCLE "##Edit",buttonSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CIRCLE "##Edit"),buttonSize)) {
           edit=!edit;
         }
         if (ImGui::IsItemHovered()) {
@@ -916,7 +916,7 @@ void FurnaceGUI::drawEditControls() {
 
         bool metro=e->getMetronome();
         pushToggleColors(metro);
-        if (ImGui::Button(ICON_FA_BELL_O "##Metronome",buttonSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_BELL_O "##Metronome"),buttonSize)) {
           e->setMetronome(!metro);
         }
         if (ImGui::IsItemHovered()) {
@@ -990,7 +990,7 @@ void FurnaceGUI::drawEditControls() {
       if (ImGui::Begin("Play Controls",&editControlsOpen,ImGuiWindowFlags_NoScrollbar|ImGuiWindowFlags_NoScrollWithMouse|globalWinFlags)) {
         if (e->isPlaying()) {
           pushToggleColors(true);
-          if (ImGui::Button(ICON_FA_STOP "##Stop")) {
+          if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_STOP "##Stop"))) {
             stop();
           }
           if (ImGui::IsItemHovered()) {
@@ -998,7 +998,7 @@ void FurnaceGUI::drawEditControls() {
           }
           popToggleColors();
         } else {
-          if (ImGui::Button(ICON_FA_PLAY "##Play")) {
+          if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLAY "##Play"))) {
             play(oldRow);
           }
           if (ImGui::IsItemHovered()) {
@@ -1006,7 +1006,7 @@ void FurnaceGUI::drawEditControls() {
           }
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_PLAY_CIRCLE "##PlayAgain")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLAY_CIRCLE "##PlayAgain"))) {
           e->setRepeatPattern(false);
           play();
         }
@@ -1014,7 +1014,7 @@ void FurnaceGUI::drawEditControls() {
           ImGui::SetTooltip("Play from the beginning of this pattern");
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_STEP_FORWARD "##PlayRepeat")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_STEP_FORWARD "##PlayRepeat"))) {
           e->setRepeatPattern(true);
           play();
         }
@@ -1022,7 +1022,7 @@ void FurnaceGUI::drawEditControls() {
           ImGui::SetTooltip("Repeat from the beginning of this pattern");
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_ARROW_DOWN "##StepOne")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROW_DOWN "##StepOne"))) {
           e->stepOne(cursor.y);
           pendingStepUpdate=1;
         }
@@ -1032,7 +1032,7 @@ void FurnaceGUI::drawEditControls() {
 
         ImGui::SameLine();
         pushToggleColors(edit);
-        if (ImGui::Button(ICON_FA_CIRCLE "##Edit")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CIRCLE "##Edit"))) {
           edit=!edit;
         }
         if (ImGui::IsItemHovered()) {
@@ -1043,7 +1043,7 @@ void FurnaceGUI::drawEditControls() {
         bool metro=e->getMetronome();
         ImGui::SameLine();
         pushToggleColors(metro);
-        if (ImGui::Button(ICON_FA_BELL_O "##Metronome")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_BELL_O "##Metronome"))) {
           e->setMetronome(!metro);
         }
         if (ImGui::IsItemHovered()) {
@@ -1054,7 +1054,7 @@ void FurnaceGUI::drawEditControls() {
         ImGui::SameLine();
         bool repeatPattern=e->getRepeatPattern();
         pushToggleColors(repeatPattern);
-        if (ImGui::Button(ICON_FA_REPEAT "##RepeatPattern")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_REPEAT "##RepeatPattern"))) {
           e->setRepeatPattern(!repeatPattern);
         }
         if (ImGui::IsItemHovered()) {

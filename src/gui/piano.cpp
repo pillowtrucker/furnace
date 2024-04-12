@@ -87,18 +87,18 @@ void FurnaceGUI::drawPiano() {
             if (edit) noteInput(0,GUI_NOTE_OFF_RELEASE);
           }
         } else {
-          if (ImGui::Button(ICON_FA_ARROW_LEFT "##PianoLeft",optionSize)) {
+            if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROW_LEFT "##PianoLeft"),optionSize)) {
             off--;
             if (off<0) off=0;
           }
           ImGui::SameLine();
-          if (ImGui::Button(ICON_FA_ARROW_RIGHT "##PianoRight",optionSize)) {
+          if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROW_RIGHT "##PianoRight"),optionSize)) {
             off++;
             if ((off+oct)>14) off=15-oct;
           }
         }
         ImGui::SameLine();
-        ImGui::Button(ICON_FA_ELLIPSIS_V "##PianoOptions",optionSize);
+        ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ELLIPSIS_V "##PianoOptions"),optionSize);
         if (ImGui::IsItemHovered()) {
           ImGui::SetTooltip("Options");
         }
@@ -144,23 +144,23 @@ void FurnaceGUI::drawPiano() {
             if (edit) noteInput(0,GUI_NOTE_RELEASE);
           }
           ImGui::SameLine();
-          if (ImGui::Button(ICON_FA_TIMES "##PianoDelP",optionSize)) {
+          if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##PianoDelP"),optionSize)) {
             doDelete();
           }
         } else {
-          if (ImGui::Button(ICON_FA_MINUS "##PianoOctaveDown",optionSize)) {
+            if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_MINUS "##PianoOctaveDown"),optionSize)) {
             oct--;
             if (oct<1) oct=1;
           }
           ImGui::SameLine();
-          if (ImGui::Button(ICON_FA_PLUS "##PianoOctaveUp",optionSize)) {
+          if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##PianoOctaveUp"),optionSize)) {
             oct++;
             if (oct>15) oct=15;
             if ((off+oct)>14) off=15-oct;
           }
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_ELLIPSIS_H "##PianoSel",optionSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ELLIPSIS_H "##PianoSel"),optionSize)) {
           pianoOptionsSet=!pianoOptionsSet;
         }
       }
@@ -493,7 +493,7 @@ void FurnaceGUI::drawPiano() {
         VALUE_DIGIT(9,"9");
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
-        if (ImGui::Button(ICON_FA_TIMES "##PianoDel",buttonSize)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##PianoDel"),buttonSize)) {
           doDelete();
         }
         ImGui::TableNextColumn();

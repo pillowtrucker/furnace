@@ -503,17 +503,17 @@ DivChannelModeHints DivPlatformSwan::getModeHints(int ch) {
   switch (ch) {
     case 1: // PCM
       ret.count=1;
-      ret.hint[0]=ICON_FA_VOLUME_UP;
+      ret.hint[0]=reinterpret_cast<const char *>(ICON_FA_VOLUME_UP);
       ret.type[0]=pcm?4:0;
       break;
     case 2: // sweep
       ret.count=1;
-      ret.hint[0]=ICON_FUR_SAW;
+      ret.hint[0]=reinterpret_cast<const char *>(ICON_FUR_SAW);
       ret.type[0]=sweep?2:0;
       break;
     case 3: // noise
       ret.count=1;
-      ret.hint[0]=ICON_FUR_NOISE;
+      ret.hint[0]=reinterpret_cast<const char *>(ICON_FUR_NOISE);
       ret.type[0]=noise?4:0;
       break;
   }

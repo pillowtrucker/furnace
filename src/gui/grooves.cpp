@@ -123,7 +123,7 @@ void FurnaceGUI::drawGrooves() {
 
         ImGui::TableNextColumn();
         pushDestColor();
-        String grooveID=fmt::sprintf(ICON_FA_TIMES "##GRR%d",index);
+        String grooveID=fmt::sprintf(reinterpret_cast<const char *>(ICON_FA_TIMES "##GRR%d"),index);
         if (ImGui::Button(grooveID.c_str())) {
           delGroove=index;
         }
@@ -145,7 +145,7 @@ void FurnaceGUI::drawGrooves() {
       MARK_MODIFIED;
     }
 
-    if (ImGui::Button(ICON_FA_PLUS "##AddGroove")) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##AddGroove"))) {
       e->lockEngine([this]() {
         e->song.grooves.push_back(DivGroovePattern());
       });

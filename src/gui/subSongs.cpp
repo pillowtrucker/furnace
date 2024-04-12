@@ -48,14 +48,14 @@ void FurnaceGUI::drawSubSongs(bool asChild) {
           }
           ImGui::TableNextColumn();
           ImGui::PushID(i);
-          if (ImGui::SmallButton(ICON_FA_ARROW_UP "##SubUp")) {
+          if (ImGui::SmallButton(reinterpret_cast<const char *>(ICON_FA_ARROW_UP "##SubUp"))) {
             e->moveSubSongUp(i);
           }
           if (ImGui::IsItemHovered()) {
             ImGui::SetTooltip("Move up");
           }
           ImGui::SameLine();
-          if (ImGui::SmallButton(ICON_FA_ARROW_DOWN "##SubDown")) {
+          if (ImGui::SmallButton(reinterpret_cast<const char *>(ICON_FA_ARROW_DOWN "##SubDown"))) {
             e->moveSubSongDown(i);
           }
           if (ImGui::IsItemHovered()) {
@@ -68,7 +68,7 @@ void FurnaceGUI::drawSubSongs(bool asChild) {
       ImGui::EndCombo();
     }
     ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_PLUS "##SubSongAdd")) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##SubSongAdd"))) {
       if (!e->addSubSong()) {
         showError("too many subsongs!");
       } else {
@@ -88,7 +88,7 @@ void FurnaceGUI::drawSubSongs(bool asChild) {
       ImGui::SetTooltip("Add");
     }
     ImGui::SameLine();
-    if (ImGui::Button(ICON_FA_FILES_O "##SubSongDuplicate")) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FILES_O "##SubSongDuplicate"))) {
       if (!e->duplicateSubSong(e->getCurrentSubSong())) {
         showError("too many subsongs!");
       } else {
@@ -109,7 +109,7 @@ void FurnaceGUI::drawSubSongs(bool asChild) {
     }
     ImGui::SameLine();
     pushDestColor();
-    if (ImGui::Button(ICON_FA_MINUS "##SubSongDel")) {
+    if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_MINUS "##SubSongDel"))) {
       if (e->song.subsong.size()<=1) {
         showError("this is the only subsong!");
       } else {

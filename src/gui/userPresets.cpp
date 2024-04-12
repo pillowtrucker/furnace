@@ -339,7 +339,7 @@ void FurnaceGUI::drawUserPresets() {
       // preset list
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
-      if (ImGui::Button(ICON_FA_PLUS "##AddPreset")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##AddPreset"))) {
         userCategory->systems.push_back(FurnaceGUISysDef("New Preset",{}));
         selectedUserPreset.clear();
         selectedUserPreset.push_back(userCategory->systems.size()-1);

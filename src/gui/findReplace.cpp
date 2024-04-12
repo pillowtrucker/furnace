@@ -558,7 +558,7 @@ void FurnaceGUI::drawFindReplace() {
                 ImGui::TableNextColumn();
                 ImGui::Text("%d (%s)",i.x+1,e->getChannelName(i.x));
                 if (ImGui::TableNextColumn()) {
-                  snprintf(tempID,1024,ICON_FA_CHEVRON_RIGHT "##_FR%d",index);
+                    snprintf(tempID,1024,reinterpret_cast<const char *>(ICON_FA_CHEVRON_RIGHT "##_FR%d"),index);
                   if (ImGui::Selectable(tempID)) {
                     e->changeSongP(i.subsong);
                     if (e->isPlaying()) {
@@ -742,7 +742,7 @@ void FurnaceGUI::drawFindReplace() {
               ImGui::TableNextRow();
               ImGui::TableNextColumn();
               pushDestColor();
-              if (ImGui::Button(ICON_FA_MINUS "##DelQuery")) {
+              if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_MINUS "##DelQuery"))) {
                 eraseIndex=index;
               }
               popDestColor();
@@ -771,7 +771,7 @@ void FurnaceGUI::drawFindReplace() {
           if (eraseIndex>=0) {
             curQuery.erase(curQuery.begin()+eraseIndex);
           }
-          if (ImGui::Button(ICON_FA_PLUS "##AddQuery")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##AddQuery"))) {
             curQuery.push_back(FurnaceGUIFindQuery());
           }
 

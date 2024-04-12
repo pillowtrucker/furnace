@@ -460,14 +460,14 @@ void FurnaceGUI::drawWaveEdit() {
           if (curWave>=(int)e->song.wave.size()) curWave=e->song.wave.size()-1;
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_FOLDER_OPEN "##WELoad")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER_OPEN "##WELoad"))) {
           doAction(GUI_ACTION_WAVE_LIST_OPEN_REPLACE);
         }
         if (ImGui::IsItemHovered()) {
           ImGui::SetTooltip("Open");
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_FLOPPY_O "##WESave")) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FLOPPY_O "##WESave"))) {
           doAction(GUI_ACTION_WAVE_LIST_SAVE);
         }
         if (ImGui::IsItemHovered()) {
@@ -523,7 +523,7 @@ void FurnaceGUI::drawWaveEdit() {
         }
 
         ImGui::SameLine();
-        if (ImGui::Button(waveGenVisible?(ICON_FA_CHEVRON_RIGHT "##WEWaveGen"):(ICON_FA_CHEVRON_LEFT "##WEWaveGen"))) {
+        if (ImGui::Button(waveGenVisible?(reinterpret_cast<const char *>(ICON_FA_CHEVRON_RIGHT "##WEWaveGen")):(reinterpret_cast<const char *>(ICON_FA_CHEVRON_LEFT "##WEWaveGen")))) {
           waveGenVisible=!waveGenVisible;
         }
 

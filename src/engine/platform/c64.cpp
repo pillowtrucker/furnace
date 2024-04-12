@@ -598,7 +598,7 @@ DivMacroInt* DivPlatformC64::getChanMacroInt(int ch) {
 DivChannelModeHints DivPlatformC64::getModeHints(int ch) {
   DivChannelModeHints ret;
   ret.count=1;
-  ret.hint[0]=ICON_FA_BELL_SLASH_O;
+  ret.hint[0]=reinterpret_cast<const char *>(ICON_FA_BELL_SLASH_O);
   ret.type[0]=0;
   if (ch==2 && (filtControl&8)) {
     ret.type[0]=7;

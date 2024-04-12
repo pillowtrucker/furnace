@@ -513,7 +513,7 @@ void FurnaceGUI::drawDebug() {
           ImGui::SetNextItemWidth(100.0f*dpiScale);
           ImGui::InputScalar("##PValue",ImGuiDataType_U16,&i.val,NULL,NULL,"%.2X",ImGuiInputTextFlags_CharsHexadecimal);
           ImGui::SameLine();
-          if (ImGui::Button(ICON_FA_TIMES "##PRemove")) {
+          if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##PRemove"))) {
             pgProgram.erase(pgProgram.begin()+index);
             index--;
           }

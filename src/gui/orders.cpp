@@ -106,7 +106,7 @@ void FurnaceGUI::drawOrderButtons() {
     buttonColumns++;
   }
 
-  if (ImGui::Button(ICON_FA_PLUS)) { handleUnimportant
+  if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS))) { handleUnimportant
     // add order row (new)
     doAction(GUI_ACTION_ORDERS_ADD);
   }
@@ -116,7 +116,7 @@ void FurnaceGUI::drawOrderButtons() {
   NEXT_BUTTON;
 
   pushDestColor();
-  if (ImGui::Button(ICON_FA_MINUS)) { handleUnimportant
+  if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_MINUS))) { handleUnimportant
     // remove this order row
     doAction(GUI_ACTION_ORDERS_REMOVE);
   }
@@ -126,7 +126,7 @@ void FurnaceGUI::drawOrderButtons() {
   } 
   NEXT_BUTTON;
 
-  if (ImGui::Button(ICON_FA_FILES_O)) { handleUnimportant
+  if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FILES_O))) { handleUnimportant
     // duplicate order row
     doAction(GUI_ACTION_ORDERS_DUPLICATE);
   }
@@ -138,7 +138,7 @@ void FurnaceGUI::drawOrderButtons() {
   }
   NEXT_BUTTON;
 
-  if (ImGui::Button(ICON_FA_ANGLE_UP)) { handleUnimportant
+  if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ANGLE_UP))) { handleUnimportant
     // move order row up
     doAction(GUI_ACTION_ORDERS_MOVE_UP);
   }
@@ -147,7 +147,7 @@ void FurnaceGUI::drawOrderButtons() {
   }
   NEXT_BUTTON;
 
-  if (ImGui::Button(ICON_FA_ANGLE_DOWN)) { handleUnimportant
+  if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ANGLE_DOWN))) { handleUnimportant
     // move order row down
     doAction(GUI_ACTION_ORDERS_MOVE_DOWN);
   }
@@ -156,7 +156,7 @@ void FurnaceGUI::drawOrderButtons() {
   }
   NEXT_BUTTON;
 
-  if (ImGui::Button(ICON_FA_ANGLE_DOUBLE_DOWN)) { handleUnimportant
+  if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ANGLE_DOUBLE_DOWN))) { handleUnimportant
     // duplicate order row at end
     doAction(GUI_ACTION_ORDERS_DUPLICATE_END);
   }
@@ -168,7 +168,7 @@ void FurnaceGUI::drawOrderButtons() {
   }
   NEXT_BUTTON;
 
-  if (ImGui::Button(changeAllOrders?ICON_FA_LINK"##ChangeAll":ICON_FA_CHAIN_BROKEN"##ChangeAll")) { handleUnimportant
+  if (ImGui::Button(changeAllOrders?reinterpret_cast<const char *>(ICON_FA_LINK"##ChangeAll"):reinterpret_cast<const char *>(ICON_FA_CHAIN_BROKEN"##ChangeAll"))) { handleUnimportant
     // whether to change one or all orders in a row
     changeAllOrders=!changeAllOrders;
   }
@@ -187,13 +187,13 @@ void FurnaceGUI::drawOrderButtons() {
 
   const char* orderEditModeLabel="?##OrderEditMode";
   if (orderEditMode==3) {
-    orderEditModeLabel=ICON_FA_ARROWS_V "##OrderEditMode";
+      orderEditModeLabel=reinterpret_cast<const char *>(ICON_FA_ARROWS_V "##OrderEditMode");
   } else if (orderEditMode==2) {
-    orderEditModeLabel=ICON_FA_ARROWS_H "##OrderEditMode";
+      orderEditModeLabel=reinterpret_cast<const char *>(ICON_FA_ARROWS_H "##OrderEditMode");
   } else if (orderEditMode==1) {
-    orderEditModeLabel=ICON_FA_I_CURSOR "##OrderEditMode";
+      orderEditModeLabel=reinterpret_cast<const char *>(ICON_FA_I_CURSOR "##OrderEditMode");
   } else {
-    orderEditModeLabel=ICON_FA_MOUSE_POINTER "##OrderEditMode";
+      orderEditModeLabel=reinterpret_cast<const char *>(ICON_FA_MOUSE_POINTER "##OrderEditMode");
   }
   if (ImGui::Button(orderEditModeLabel)) { handleUnimportant
     orderEditMode++;

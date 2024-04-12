@@ -750,7 +750,7 @@ void FurnaceGUI::drawPattern() {
             ImGui::TextUnformatted(chanID);
             ImGui::SameLine();
             ImGui::PushFont(mainFont);
-            ImGui::SmallButton(muted?ICON_FA_VOLUME_OFF:ICON_FA_VOLUME_UP);
+            ImGui::SmallButton(muted?reinterpret_cast<const char *>(ICON_FA_VOLUME_OFF):reinterpret_cast<const char *>(ICON_FA_VOLUME_UP));
             ImGui::PopFont();
             break;
           case 4: { // square border
@@ -972,27 +972,27 @@ void FurnaceGUI::drawPattern() {
                 onOffColor=uiColors[GUI_COLOR_PATTERN_STATUS_OFF];
               }
             }
-            iconPos[0].x-=mainFont->CalcTextSizeA(mainFont->FontSize,FLT_MAX,0.0f,ICON_FA_SQUARE).x*0.5f;
-            dl->AddText(mainFont,settings.mainFontSize*dpiScale,iconPos[0],ImGui::GetColorU32(onOffColor),ICON_FA_SQUARE);
+            iconPos[0].x-=mainFont->CalcTextSizeA(mainFont->FontSize,FLT_MAX,0.0f,reinterpret_cast<const char *>(ICON_FA_SQUARE)).x*0.5f;
+            dl->AddText(mainFont,settings.mainFontSize*dpiScale,iconPos[0],ImGui::GetColorU32(onOffColor),reinterpret_cast<const char *>(ICON_FA_SQUARE));
 
             // 2. PITCH SLIDE/VIBRATO
             ImVec4 pitchColor;
-            const char* pitchIcon=ICON_FUR_SINE;
+            const char* pitchIcon=reinterpret_cast<const char *>(ICON_FUR_SINE);
             if (cs->inPorta) {
-              pitchIcon=ICON_FA_SHARE;
+              pitchIcon=reinterpret_cast<const char *>(ICON_FA_SHARE);
               pitchColor=uiColors[GUI_COLOR_PATTERN_STATUS_PITCH];
             } else if (cs->portaSpeed>0) {
               if (cs->portaNote>=60) {
-                pitchIcon=ICON_FA_CHEVRON_UP;
+                pitchIcon=reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP);
               } else {
-                pitchIcon=ICON_FA_CHEVRON_DOWN;
+                pitchIcon=reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN);
               }
               pitchColor=uiColors[GUI_COLOR_PATTERN_STATUS_PITCH];
             } else if (cs->vibratoDepth>0) {
-              pitchIcon=ICON_FUR_SINE;
+              pitchIcon=reinterpret_cast<const char *>(ICON_FUR_SINE);
               pitchColor=uiColors[GUI_COLOR_PATTERN_STATUS_PITCH];
             } else if (cs->arp) {
-              pitchIcon=ICON_FA_BARS;
+              pitchIcon=reinterpret_cast<const char *>(ICON_FA_BARS);
               pitchColor=uiColors[GUI_COLOR_PATTERN_STATUS_NOTE];
             } else {
               pitchColor=uiColors[GUI_COLOR_PATTERN_STATUS_OFF];
@@ -1003,15 +1003,15 @@ void FurnaceGUI::drawPattern() {
 
             // 3. VOLUME
             ImVec4 volColor;
-            const char* volIcon=ICON_FA_MINUS;
+            const char* volIcon=reinterpret_cast<const char *>(ICON_FA_MINUS);
             if (cs->tremoloDepth>0) {
-              volIcon=ICON_FUR_SINE;
+              volIcon=reinterpret_cast<const char *>(ICON_FUR_SINE);
               volColor=uiColors[GUI_COLOR_PATTERN_STATUS_VOLUME];
             } else if (cs->volSpeed) {
               if (cs->volSpeed>0) {
-                volIcon=ICON_FA_CHEVRON_UP;
+                volIcon=reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP);
               } else {
-                volIcon=ICON_FA_CHEVRON_DOWN;
+                volIcon=reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN);
               }
               volColor=uiColors[GUI_COLOR_PATTERN_STATUS_VOLUME];
             } else {
@@ -1491,20 +1491,20 @@ void FurnaceGUI::drawPattern() {
         float lifeSpeed=8.0f;
         float spread=5.0f;
         int num=3;
-        const char* partIcon=ICON_FA_MICROCHIP;
+        const char* partIcon=reinterpret_cast<const char *>(ICON_FA_MICROCHIP);
         ImU32* color=noteGrad;
 
         switch (i.cmd) {
           case DIV_CMD_NOTE_ON: {
             float strength=CLAMP(i.value,0,119);
-            partIcon=ICON_FA_ASTERISK;
+            partIcon=reinterpret_cast<const char *>(ICON_FA_ASTERISK);
             life=80.0f+((i.value==DIV_NOTE_NULL)?0.0f:(strength*0.3f));
             lifeSpeed=3.0f;
             num=6+(strength/16);
             break;
           }
           case DIV_CMD_LEGATO:
-            partIcon=ICON_FA_COG;
+            partIcon=reinterpret_cast<const char *>(ICON_FA_COG);
             color=insGrad;
             life=64.0f;
             lifeSpeed=2.0f;
@@ -1512,7 +1512,7 @@ void FurnaceGUI::drawPattern() {
           case DIV_CMD_NOTE_OFF:
           case DIV_CMD_NOTE_OFF_ENV:
           case DIV_CMD_ENV_RELEASE:
-            partIcon=ICON_FA_ASTERISK;
+            partIcon=reinterpret_cast<const char *>(ICON_FA_ASTERISK);
             speedX=0.0f;
             speedY=0.0f;
             grav=0.0f;
@@ -1524,7 +1524,7 @@ void FurnaceGUI::drawPattern() {
             if (scaledVol>1.0f) scaledVol=1.0f;
             speedY=-18.0f-(10.0f*scaledVol);
             life=128+scaledVol*127;
-            partIcon=ICON_FA_VOLUME_UP;
+            partIcon=reinterpret_cast<const char *>(ICON_FA_VOLUME_UP);
             num=12.0f*pow(scaledVol,2.0);
             color=volGrad;
             break;
@@ -1555,11 +1555,11 @@ void FurnaceGUI::drawPattern() {
             grav=0.0f;
             frict=0.96f;
             if (i.value==i.value2) {
-              partIcon=ICON_FA_ARROWS_H;
+              partIcon=reinterpret_cast<const char *>(ICON_FA_ARROWS_H);
             } else if (ratio>0) {
-              partIcon=ICON_FA_ARROW_LEFT;
+              partIcon=reinterpret_cast<const char *>(ICON_FA_ARROW_LEFT);
             } else {
-              partIcon=ICON_FA_ARROW_RIGHT;
+              partIcon=reinterpret_cast<const char *>(ICON_FA_ARROW_RIGHT);
             }
             num=9;
             color=panGrad;
@@ -1627,7 +1627,7 @@ void FurnaceGUI::drawPattern() {
           if (!(partPos.x<winMin.x || partPos.y<winMin.y || partPos.x>winMax.x || partPos.y>winMax.y)) {
             particles.push_back(Particle(
               pitchGrad,
-              (ch->portaNote<=ch->note)?ICON_FA_CHEVRON_DOWN:ICON_FA_CHEVRON_UP,
+              (ch->portaNote<=ch->note)?reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN):reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP),
               partPos.x,
               partPos.y,
               0.0f,
@@ -1684,7 +1684,7 @@ void FurnaceGUI::drawPattern() {
           if (!(partPos.x<winMin.x || partPos.y<winMin.y || partPos.x>winMax.x || partPos.y>winMax.y)) {
             particles.push_back(Particle(
               pitchGrad,
-              ICON_FA_GLASS,
+              reinterpret_cast<const char *>(ICON_FA_GLASS),
               partPos.x,
               partPos.y,
               randRange(-4.0f,4.0f),

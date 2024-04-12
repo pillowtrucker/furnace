@@ -20,7 +20,7 @@ void FurnaceGUI::drawEffectList() {
     }
     effectSearch.Draw("Search");
     ImGui::SameLine();
-    ImGui::Button(ICON_FA_BARS "##SortEffects");
+    ImGui::Button(reinterpret_cast<const char *>(ICON_FA_BARS "##SortEffects"));
     if (ImGui::BeginPopupContextItem("effectSort",ImGuiPopupFlags_MouseButtonLeft)) {
       ImGui::Text("Effect types to show:");
       for (int i=1; i<10; i++) {

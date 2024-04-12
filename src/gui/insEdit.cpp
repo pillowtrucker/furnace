@@ -246,10 +246,10 @@ enum ESFMParams {
 #define ESFM_SHORT_NAME(x) (esfmParamShortNames[x])
 
 const char* macroTypeLabels[4]={
-  ICON_FA_BAR_CHART "##IMacroType",
-  ICON_FUR_ADSR "##IMacroType",
-  ICON_FUR_TRI "##IMacroType",
-  ICON_FA_SIGN_OUT "##IMacroType"
+    reinterpret_cast<const char *>(ICON_FA_BAR_CHART "##IMacroType"),
+    reinterpret_cast<const char *>(ICON_FUR_ADSR "##IMacroType"),
+    reinterpret_cast<const char *>(ICON_FUR_TRI "##IMacroType"),
+    reinterpret_cast<const char *>(ICON_FA_SIGN_OUT "##IMacroType")
 };
 
 const char* macroLFOShapes[4]={
@@ -1969,7 +1969,7 @@ void FurnaceGUI::drawMacroEdit(FurnaceGUIMacroDesc& i, int totalFit, float avail
 
 #define BUTTON_TO_SET_PROPS(_x) \
   pushToggleColors(_x.macro->speed!=1 || _x.macro->delay); \
-  ImGui::Button(ICON_FA_ELLIPSIS_H "##IMacroSet"); \
+  ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ELLIPSIS_H "##IMacroSet")); \
   popToggleColors(); \
   if (ImGui::IsItemHovered()) { \
     ImGui::SetTooltip("Delay/Step Length"); \
@@ -1987,7 +1987,7 @@ void FurnaceGUI::drawMacroEdit(FurnaceGUIMacroDesc& i, int totalFit, float avail
 
 #define BUTTON_TO_SET_RELEASE(buttonType) \
   pushToggleColors(i.macro->open&8); \
-  if (buttonType(ICON_FA_BOLT "##IMacroRelMode")) { \
+  if (buttonType(reinterpret_cast<const char *>(ICON_FA_BOLT "##IMacroRelMode"))) { \
     i.macro->open^=8; \
   } \
   if (ImGui::IsItemHovered()) { \
@@ -2045,7 +2045,7 @@ void FurnaceGUI::drawMacros(std::vector<FurnaceGUIMacroDesc>& macros, FurnaceGUI
           ImGui::TableNextColumn();
           ImGui::Text("%s",i.displayName);
           ImGui::SameLine();
-          if (ImGui::SmallButton((i.macro->open&1)?(ICON_FA_CHEVRON_UP "##IMacroOpen"):(ICON_FA_CHEVRON_DOWN "##IMacroOpen"))) {
+          if (ImGui::SmallButton((i.macro->open&1)?(reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP "##IMacroOpen")):(reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN "##IMacroOpen")))) {
             i.macro->open^=1;
           }
           if (i.macro->open&1) {
@@ -2121,7 +2121,7 @@ void FurnaceGUI::drawMacros(std::vector<FurnaceGUIMacroDesc>& macros, FurnaceGUI
 
           ImGui::TextUnformatted(i.displayName);
           ImGui::SameLine();
-          if (ImGui::SmallButton((i.macro->open&1)?(ICON_FA_CHEVRON_UP "##IMacroOpen"):(ICON_FA_CHEVRON_DOWN "##IMacroOpen"))) {
+          if (ImGui::SmallButton((i.macro->open&1)?(reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP "##IMacroOpen")):(reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN "##IMacroOpen")))) {
             i.macro->open^=1;
           }
 
@@ -2215,7 +2215,7 @@ void FurnaceGUI::drawMacros(std::vector<FurnaceGUIMacroDesc>& macros, FurnaceGUI
           ImGui::EndDisabled();
 
           ImGui::SameLine();
-          ImGui::Button(ICON_FA_SEARCH_PLUS "##MacroZoomB");
+          ImGui::Button(reinterpret_cast<const char *>(ICON_FA_SEARCH_PLUS "##MacroZoomB"));
           if (ImGui::BeginPopupContextItem("MacroZoomP",ImGuiPopupFlags_MouseButtonLeft)) {
             ImGui::SetNextItemWidth(120.0f*dpiScale);
             if (ImGui::InputInt("##MacroPointSize",&macroPointSize,1,4)) {
@@ -2431,12 +2431,12 @@ void FurnaceGUI::alterSampleMap(int column, int val) {
   }
 
 #define OP_DRAG_POINT \
-  if (ImGui::Button(ICON_FA_ARROWS)) { \
+  if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROWS))) { \
   } \
   if (ImGui::BeginDragDropSource()) { \
     opToMove=i; \
     ImGui::SetDragDropPayload("FUR_OP",NULL,0,ImGuiCond_Once); \
-    ImGui::Button(ICON_FA_ARROWS "##SysDrag"); \
+    ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROWS "##SysDrag")); \
     ImGui::SameLine(); \
     if (ImGui::IsKeyDown(ImGuiKey_LeftShift) || ImGui::IsKeyDown(ImGuiKey_RightShift)) { \
       ImGui::Text("(copying)"); \
@@ -3029,14 +3029,14 @@ void FurnaceGUI::drawInsEdit() {
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
-        if (ImGui::Button(ICON_FA_FOLDER_OPEN "##IELoad")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER_OPEN "##IELoad"))) {
           doAction(GUI_ACTION_INS_LIST_OPEN_REPLACE);
         }
         if (ImGui::IsItemHovered()) {
           ImGui::SetTooltip("Open");
         }
         ImGui::SameLine();
-        if (ImGui::Button(ICON_FA_FLOPPY_O "##IESave")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FLOPPY_O "##IESave"))) {
           doAction(GUI_ACTION_INS_LIST_SAVE);
         }
         if (ImGui::IsItemHovered()) {
@@ -5595,7 +5595,7 @@ void FurnaceGUI::drawInsEdit() {
                 ImGui::PopID();
                 ImGui::TableNextColumn();
                 ImGui::PushID(i+512);
-                if (ImGui::Button(ICON_FA_CHEVRON_UP "##HWCmdUp")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP "##HWCmdUp"))) {
                   if (i>0) {
                     e->lockEngine([ins,i]() {
                       ins->gb.hwSeq[i-1].cmd^=ins->gb.hwSeq[i].cmd;
@@ -5610,7 +5610,7 @@ void FurnaceGUI::drawInsEdit() {
                   MARK_MODIFIED;
                 }
                 ImGui::SameLine();
-                if (ImGui::Button(ICON_FA_CHEVRON_DOWN "##HWCmdDown")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN "##HWCmdDown"))) {
                   if (i<ins->gb.hwSeqLen-1) {
                     e->lockEngine([ins,i]() {
                       ins->gb.hwSeq[i+1].cmd^=ins->gb.hwSeq[i].cmd;
@@ -5626,7 +5626,7 @@ void FurnaceGUI::drawInsEdit() {
                 }
                 ImGui::SameLine();
                 pushDestColor();
-                if (ImGui::Button(ICON_FA_TIMES "##HWCmdDel")) {
+                if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##HWCmdDel"))) {
                   for (int j=i; j<ins->gb.hwSeqLen-1; j++) {
                     ins->gb.hwSeq[j].cmd=ins->gb.hwSeq[j+1].cmd;
                     ins->gb.hwSeq[j].data=ins->gb.hwSeq[j+1].data;
@@ -5639,7 +5639,7 @@ void FurnaceGUI::drawInsEdit() {
               ImGui::EndTable();
             }
 
-            if (ImGui::Button(ICON_FA_PLUS "##HWCmdAdd")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##HWCmdAdd"))) {
               if (ins->gb.hwSeqLen<255) {
                 ins->gb.hwSeq[ins->gb.hwSeqLen].cmd=0;
                 ins->gb.hwSeq[ins->gb.hwSeqLen].data=0;
@@ -5936,7 +5936,7 @@ void FurnaceGUI::drawInsEdit() {
                 ImGui::PopID();
                 ImGui::TableNextColumn();
                 ImGui::PushID(i+512);
-                if (ImGui::Button(ICON_FA_CHEVRON_UP "##HWCmdUp")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP "##HWCmdUp"))) {
                   if (i>0) {
                     e->lockEngine([ins,i]() {
                       ins->su.hwSeq[i-1].cmd^=ins->su.hwSeq[i].cmd;
@@ -5959,7 +5959,7 @@ void FurnaceGUI::drawInsEdit() {
                   MARK_MODIFIED;
                 }
                 ImGui::SameLine();
-                if (ImGui::Button(ICON_FA_CHEVRON_DOWN "##HWCmdDown")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN "##HWCmdDown"))) {
                   if (i<ins->su.hwSeqLen-1) {
                     e->lockEngine([ins,i]() {
                       ins->su.hwSeq[i+1].cmd^=ins->su.hwSeq[i].cmd;
@@ -5983,7 +5983,7 @@ void FurnaceGUI::drawInsEdit() {
                 }
                 ImGui::SameLine();
                 pushDestColor();
-                if (ImGui::Button(ICON_FA_TIMES "##HWCmdDel")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##HWCmdDel"))) {
                   for (int j=i; j<ins->su.hwSeqLen-1; j++) {
                     ins->su.hwSeq[j].cmd=ins->su.hwSeq[j+1].cmd;
                     ins->su.hwSeq[j].speed=ins->su.hwSeq[j+1].speed;
@@ -5998,7 +5998,7 @@ void FurnaceGUI::drawInsEdit() {
               ImGui::EndTable();
             }
 
-            if (ImGui::Button(ICON_FA_PLUS "##HWCmdAdd")) {
+            if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLUS "##HWCmdAdd"))) {
               if (ins->su.hwSeqLen<255) {
                 ins->su.hwSeq[ins->su.hwSeqLen].cmd=0;
                 ins->su.hwSeq[ins->su.hwSeqLen].speed=0;
@@ -6629,7 +6629,7 @@ void FurnaceGUI::drawInsEdit() {
                 if (ins->std.waveMacro.len>0) {
                   ImGui::PushStyleColor(ImGuiCol_Text,uiColors[GUI_COLOR_WARNING]);
                   ImGui::AlignTextToFramePadding();
-                  ImGui::Text("Wave 1 " ICON_FA_EXCLAMATION_TRIANGLE);
+                  ImGui::Text(reinterpret_cast<const char *>("Wave 1 " ICON_FA_EXCLAMATION_TRIANGLE));
                   ImGui::PopStyleColor();
                   if (ImGui::IsItemHovered()) {
                     ImGui::SetTooltip("waveform macro is controlling wave 1!\nthis value will be ineffective.");
@@ -6663,7 +6663,7 @@ void FurnaceGUI::drawInsEdit() {
                   }
                 }
                 ImGui::TableNextColumn();
-                if (ImGui::Button(wavePreviewPaused?(ICON_FA_PLAY "##WSPause"):(ICON_FA_PAUSE "##WSPause"))) {
+if (ImGui::Button(wavePreviewPaused?(reinterpret_cast<const char *>(ICON_FA_PLAY "##WSPause")):(reinterpret_cast<const char *>(ICON_FA_PAUSE "##WSPause")))) {
                   wavePreviewPaused=!wavePreviewPaused;
                 }
                 if (ImGui::IsItemHovered()) {
@@ -6674,14 +6674,14 @@ void FurnaceGUI::drawInsEdit() {
                   }
                 }
                 ImGui::SameLine();
-                if (ImGui::Button(ICON_FA_REPEAT "##WSRestart")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_REPEAT "##WSRestart"))) {
                   wavePreviewInit=true;
                 }
                 if (ImGui::IsItemHovered()) {
                   ImGui::SetTooltip("Restart preview");
                 }
                 ImGui::SameLine();
-                if (ImGui::Button(ICON_FA_UPLOAD "##WSCopy")) {
+if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_UPLOAD "##WSCopy"))) {
                   curWave=e->addWave();
                   if (curWave==-1) {
                     showError("too many wavetables!");

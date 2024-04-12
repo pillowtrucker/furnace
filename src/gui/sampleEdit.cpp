@@ -155,7 +155,7 @@ void FurnaceGUI::drawSampleEdit() {
 
       ImGui::SameLine();
 
-      if (ImGui::Button(ICON_FA_FOLDER_OPEN "##SELoad")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FOLDER_OPEN "##SELoad"))) {
         doAction(GUI_ACTION_SAMPLE_LIST_OPEN_REPLACE);
       }
       if (ImGui::IsItemHovered()) {
@@ -168,7 +168,7 @@ void FurnaceGUI::drawSampleEdit() {
         ImGui::EndPopup();
       }
       ImGui::SameLine();
-      if (ImGui::Button(ICON_FA_FLOPPY_O "##SESave")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_FLOPPY_O "##SESave"))) {
         doAction(GUI_ACTION_SAMPLE_LIST_SAVE);
       }
       if (ImGui::IsItemHovered()) {
@@ -428,7 +428,7 @@ void FurnaceGUI::drawSampleEdit() {
       if (ImGui::BeginTable("SampleProps",(selColumns>1)?4:3,ImGuiTableFlags_SizingStretchSame|ImGuiTableFlags_BordersV|ImGuiTableFlags_BordersOuterH)) {
         ImGui::TableNextRow(ImGuiTableRowFlags_Headers);
         ImGui::TableNextColumn();
-        if (ImGui::Button(sampleInfo?(ICON_FA_CHEVRON_UP "##SECollapse"):(ICON_FA_CHEVRON_DOWN "##SECollapse"))) {
+        if (ImGui::Button(sampleInfo?(reinterpret_cast<const char *>(ICON_FA_CHEVRON_UP "##SECollapse")):(reinterpret_cast<const char *>(ICON_FA_CHEVRON_DOWN "##SECollapse")))) {
           sampleInfo=!sampleInfo;
         }
         ImGui::SameLine();
@@ -854,7 +854,7 @@ void FurnaceGUI::drawSampleEdit() {
       ImGui::Separator();
 
       pushToggleColors(!sampleDragMode);
-      if (ImGui::Button(ICON_FA_I_CURSOR "##SSelect")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_I_CURSOR "##SSelect"))) {
         sampleDragMode=false;
       }
       popToggleColors();
@@ -863,7 +863,7 @@ void FurnaceGUI::drawSampleEdit() {
       }
       sameLineMaybe();
       pushToggleColors(sampleDragMode);
-      if (ImGui::Button(ICON_FA_PENCIL "##SDraw")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PENCIL "##SDraw"))) {
         sampleDragMode=true;
       }
       popToggleColors();
@@ -874,7 +874,7 @@ void FurnaceGUI::drawSampleEdit() {
       sameLineMaybe();
       ImGui::Dummy(ImVec2(4.0*dpiScale,dpiScale));
       sameLineMaybe();
-      ImGui::Button(ICON_FUR_SAMPLE_RESIZE "##SResize");
+      ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_RESIZE "##SResize"));
       if (ImGui::IsItemClicked()) {
         resizeSize=sample->samples;
       }
@@ -909,7 +909,7 @@ void FurnaceGUI::drawSampleEdit() {
         resizeSize=sample->samples;
       }
       sameLineMaybe();
-      ImGui::Button(ICON_FUR_SAMPLE_RESAMPLE "##SResample");
+      ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_RESAMPLE "##SResample"));
       if (ImGui::IsItemClicked()) {
         resampleTarget=targetRate;
       }
@@ -966,14 +966,14 @@ void FurnaceGUI::drawSampleEdit() {
       ImGui::SameLine();
       ImGui::Dummy(ImVec2(4.0*dpiScale,dpiScale));
       sameLineMaybe();
-      if (ImGui::Button(ICON_FA_UNDO "##SUndo")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_UNDO "##SUndo"))) {
         doUndoSample();
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Undo");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FA_REPEAT "##SRedo")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_REPEAT "##SRedo"))) {
         doRedoSample();
       }
       if (ImGui::IsItemHovered()) {
@@ -982,7 +982,7 @@ void FurnaceGUI::drawSampleEdit() {
       ImGui::SameLine();
       ImGui::Dummy(ImVec2(4.0*dpiScale,dpiScale));
       sameLineMaybe();
-      ImGui::Button(ICON_FA_VOLUME_UP "##SAmplify");
+      ImGui::Button(reinterpret_cast<const char *>(ICON_FA_VOLUME_UP "##SAmplify"));
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Amplify");
       }
@@ -1030,28 +1030,28 @@ void FurnaceGUI::drawSampleEdit() {
         ImGui::EndPopup();
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FUR_SAMPLE_NORMALIZE "##SNormalize")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_NORMALIZE "##SNormalize"))) {
         doAction(GUI_ACTION_SAMPLE_NORMALIZE);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Normalize");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FUR_SAMPLE_FADEIN "##SFadeIn")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_FADEIN "##SFadeIn"))) {
         doAction(GUI_ACTION_SAMPLE_FADE_IN);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Fade in");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FUR_SAMPLE_FADEOUT "##SFadeOut")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_FADEOUT "##SFadeOut"))) {
         doAction(GUI_ACTION_SAMPLE_FADE_OUT);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Fade out");
       }
       sameLineMaybe();
-      ImGui::Button(ICON_FUR_SAMPLE_INSERT_SILENCE "##SInsertSilence");
+      ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_INSERT_SILENCE "##SInsertSilence"));
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Insert silence");
       }
@@ -1082,21 +1082,21 @@ void FurnaceGUI::drawSampleEdit() {
         ImGui::EndPopup();
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FUR_SAMPLE_APPLY_SILENCE "##SSilence")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_APPLY_SILENCE "##SSilence"))) {
         doAction(GUI_ACTION_SAMPLE_SILENCE);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Apply silence");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FA_TIMES "##SDelete")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_TIMES "##SDelete"))) {
         doAction(GUI_ACTION_SAMPLE_DELETE);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Delete");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FA_CROP "##STrim")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_CROP "##STrim"))) {
         doAction(GUI_ACTION_SAMPLE_TRIM);
       }
       if (ImGui::IsItemHovered()) {
@@ -1105,28 +1105,28 @@ void FurnaceGUI::drawSampleEdit() {
       ImGui::SameLine();
       ImGui::Dummy(ImVec2(4.0*dpiScale,dpiScale));
       sameLineMaybe();
-      if (ImGui::Button(ICON_FUR_SAMPLE_REVERSE "##SReverse")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_REVERSE "##SReverse"))) {
         doAction(GUI_ACTION_SAMPLE_REVERSE);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Reverse");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FUR_SAMPLE_INVERT "##SInvert")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_INVERT "##SInvert"))) {
         doAction(GUI_ACTION_SAMPLE_INVERT);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Invert");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FUR_SAMPLE_SIGN "##SSign")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_SIGN "##SSign"))) {
         doAction(GUI_ACTION_SAMPLE_SIGN);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Signed/unsigned exchange");
       }
       sameLineMaybe();
-      ImGui::Button(ICON_FUR_SAMPLE_FILTER "##SFilter");
+      ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_SAMPLE_FILTER "##SFilter"));
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Apply filter");
       }
@@ -1243,7 +1243,7 @@ void FurnaceGUI::drawSampleEdit() {
       ImGui::SameLine();
       ImGui::Dummy(ImVec2(4.0*dpiScale,dpiScale));
       sameLineMaybe();
-      ImGui::Button(ICON_FUR_CROSSFADE "##CrossFade");
+      ImGui::Button(reinterpret_cast<const char *>(ICON_FUR_CROSSFADE "##CrossFade"));
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Crossfade loop points");
       }
@@ -1311,21 +1311,21 @@ void FurnaceGUI::drawSampleEdit() {
         ImGui::EndPopup();
       }
       ImGui::SameLine();
-      if (ImGui::Button(ICON_FA_PLAY "##PreviewSample")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_PLAY "##PreviewSample"))) {
         e->previewSample(curSample);
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Preview sample");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FA_STOP "##StopSample")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_STOP "##StopSample"))) {
         e->stopSamplePreview();
       }
       if (ImGui::IsItemHovered()) {
         ImGui::SetTooltip("Stop sample preview");
       }
       sameLineMaybe();
-      if (ImGui::Button(ICON_FA_UPLOAD "##MakeIns")) {
+      if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_UPLOAD "##MakeIns"))) {
         doAction(GUI_ACTION_SAMPLE_MAKE_INS);
       }
       if (ImGui::IsItemHovered()) {

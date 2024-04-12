@@ -643,7 +643,7 @@ namespace IGFD
   void IGFD::SearchManager::DrawSearchBar(FileDialogInternal& vFileDialogInternal)
   {
     // search field
-    if (IMGUI_BUTTON(resetButtonString "##BtnImGuiFileDialogSearchField"))
+      if (IMGUI_BUTTON(reinterpret_cast<const char *>(resetButtonString "##BtnImGuiFileDialogSearchField")))
     {
       Clear();
       vFileDialogInternal.puFileManager.ApplyFilteringOnFileList(vFileDialogInternal);
@@ -1190,7 +1190,7 @@ namespace IGFD
       if (puSortingDirection[0])
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileName = tableHeaderDescendingIcon + puHeaderFileName;
+          puHeaderFileName = reinterpret_cast<const char *>(tableHeaderDescendingIcon) + puHeaderFileName;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -1216,7 +1216,7 @@ namespace IGFD
       else
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileName = tableHeaderAscendingIcon + puHeaderFileName;
+          puHeaderFileName = reinterpret_cast<const char *>(tableHeaderAscendingIcon) + puHeaderFileName;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -1248,7 +1248,7 @@ namespace IGFD
       if (puSortingDirection[1])
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileType = tableHeaderDescendingIcon + puHeaderFileType;
+          puHeaderFileType = reinterpret_cast<const char *>(tableHeaderDescendingIcon) + puHeaderFileType;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -1260,7 +1260,7 @@ namespace IGFD
       else
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileType = tableHeaderAscendingIcon + puHeaderFileType;
+          puHeaderFileType = reinterpret_cast<const char *>(tableHeaderAscendingIcon) + puHeaderFileType;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -1279,7 +1279,7 @@ namespace IGFD
       if (puSortingDirection[2])
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileSize = tableHeaderDescendingIcon + puHeaderFileSize;
+          puHeaderFileSize = reinterpret_cast<const char *>(tableHeaderDescendingIcon) + puHeaderFileSize;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -1291,7 +1291,7 @@ namespace IGFD
       else
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileSize = tableHeaderAscendingIcon + puHeaderFileSize;
+          puHeaderFileSize = reinterpret_cast<const char *>(tableHeaderAscendingIcon) + puHeaderFileSize;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -1310,7 +1310,7 @@ namespace IGFD
       if (puSortingDirection[3])
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileDate = tableHeaderDescendingIcon + puHeaderFileDate;
+          puHeaderFileDate = reinterpret_cast<const char *>(tableHeaderDescendingIcon) + puHeaderFileDate;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -1322,7 +1322,7 @@ namespace IGFD
       else
       {
 #ifdef USE_CUSTOM_SORTING_ICON
-        puHeaderFileDate = tableHeaderAscendingIcon + puHeaderFileDate;
+          puHeaderFileDate = reinterpret_cast<const char *>(tableHeaderAscendingIcon) + puHeaderFileDate;
 #endif // USE_CUSTOM_SORTING_ICON
         std::sort(prFileList.begin(), prFileList.end(),
           [](const FileInfos& a, const FileInfos& b) -> bool
@@ -2111,7 +2111,7 @@ namespace IGFD
     if (vFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableCreateDirectoryButton)
       return;
 
-    if (IMGUI_BUTTON(createDirButtonString))
+    if (IMGUI_BUTTON(reinterpret_cast<const char *>(createDirButtonString)))
     {
       if (!prCreateDirectoryMode)
       {
@@ -2132,7 +2132,7 @@ namespace IGFD
 
       ImGui::SameLine();
 
-      if (IMGUI_BUTTON(okButtonString))
+      if (IMGUI_BUTTON(reinterpret_cast<const char *>(okButtonString)))
       {
         std::string newDir = std::string(puDirectoryNameBuffer);
         if (CreateDir(newDir))
@@ -2146,7 +2146,7 @@ namespace IGFD
 
       ImGui::SameLine();
 
-      if (IMGUI_BUTTON(cancelButtonString))
+      if (IMGUI_BUTTON(reinterpret_cast<const char *>(cancelButtonString)))
       {
         prCreateDirectoryMode = false;
       }
@@ -2155,7 +2155,7 @@ namespace IGFD
 
   void IGFD::FileManager::DrawPathComposer(const FileDialogInternal& vFileDialogInternal)
   {
-    if (IMGUI_BUTTON(homeButtonString))
+      if (IMGUI_BUTTON(reinterpret_cast<const char *>(homeButtonString)))
     {
       SetCurrentPath(FileDialog::Instance()->homePath);
       OpenCurrentPath(vFileDialogInternal);
@@ -2164,7 +2164,7 @@ namespace IGFD
       ImGui::SetTooltip(buttonResetPathString);
 
     ImGui::SameLine();
-    if (IMGUI_BUTTON(parentDirString))
+    if (IMGUI_BUTTON(reinterpret_cast<const char *>(parentDirString)))
     {
       if (SetPathOnParentDirectoryIfAny()) {
         OpenCurrentPath(vFileDialogInternal);
@@ -2186,7 +2186,7 @@ namespace IGFD
 
     ImGui::SameLine();
     
-    if (IMGUI_BUTTON(editPathButtonString))
+    if (IMGUI_BUTTON(reinterpret_cast<const char *>(editPathButtonString)))
     {
       puInputPathActivated = true;
     }

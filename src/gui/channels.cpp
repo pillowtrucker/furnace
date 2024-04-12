@@ -71,12 +71,12 @@ void FurnaceGUI::drawChannels() {
           ImGui::SetTooltip("Show in per-channel oscilloscope");
         }
         ImGui::TableNextColumn();
-        if (ImGui::Button(ICON_FA_ARROWS)) {
+        if (ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROWS))) {
         }
         if (ImGui::BeginDragDropSource()) {
           chanToMove=i;
           ImGui::SetDragDropPayload("FUR_CHAN",NULL,0,ImGuiCond_Once);
-          ImGui::Button(ICON_FA_ARROWS "##ChanDrag");
+          ImGui::Button(reinterpret_cast<const char *>(ICON_FA_ARROWS "##ChanDrag"));
           ImGui::EndDragDropSource();
         } else if (ImGui::IsItemHovered()) {
           ImGui::SetTooltip("%s #%d\n(drag to swap channels)",e->getSystemName(e->sysOfChan[i]),e->dispatchChanOfChan[i]);
