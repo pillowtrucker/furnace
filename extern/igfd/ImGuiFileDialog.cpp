@@ -2176,7 +2176,7 @@ namespace IGFD
 #ifdef WIN32
     ImGui::SameLine();
 
-    if (IMGUI_BUTTON(drivesButtonString))
+    if (IMGUI_BUTTON(reinterpret_cast<const char *>(drivesButtonString)))
     {
       puDrivesClicked = true;
     }
