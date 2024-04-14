@@ -1103,7 +1103,7 @@ elseif(WIN32)
   add_library(furnace STATIC ${USED_SOURCES})
 else()
 #  add_executable(furnace ${USED_SOURCES})
-  add_library(furnace SHARED ${USED_SOURCES})
+  add_library(furnace STATIC ${USED_SOURCES})
 endif()
 
 target_include_directories(furnace SYSTEM PRIVATE ${DEPENDENCIES_INCLUDE_DIRS})
