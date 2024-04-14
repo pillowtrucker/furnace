@@ -1079,6 +1079,7 @@ endif()
 # target_compile_options(furnace PRIVATE ${WARNING_FLAGS})
 string(REPLACE ";" " " WARNING_FLAGS_STRING "${WARNING_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARNING_FLAGS_STRING}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 if (WARNINGS_ARE_ERRORS)
   message(STATUS
     "Treating all warnings in furnace's C++ code as errors! "
